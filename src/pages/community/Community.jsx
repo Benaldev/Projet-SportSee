@@ -1,16 +1,9 @@
 import React from "react";
 import "./styles.scss";
+import ComingSoon from "../../components/comingSoon/ComingSoon";
 
 const Community = () => {
-  return (
-    <div className="under-construction">
-      <h1> Page en cours de construction. </h1>
-      <p>
-        Nous travaillons activement pour vous offrir une meilleure expérience.
-      </p>
-      <p>Revenez bientôt !</p>
-    </div>
-  );
+  return <ComingSoon />;
 };
 
 export default Community;
