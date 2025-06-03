@@ -1,0 +1,28 @@
+header {
+  background-color: #020203;
+  display: flex;
+  height: 91px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+
+  .logo {
+    width: 178px;
+    height: 60.93px;
+  }
+
+  nav {
+    flex: 1;
+    ul {
+      display: flex;
+      font-size: 24px;
+      list-style: none;
+      justify-content: space-around;
+
+      li a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
