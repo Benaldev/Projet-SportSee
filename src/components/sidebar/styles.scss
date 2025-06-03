@@ -1,0 +1,33 @@
+.sidebar {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 117px;
+  position: fixed;
+  top: 91px;
+  left: 0;
+  height: calc(100vh - 91px);
+
+  ul {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    margin: auto 0;
+    padding: 0;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 5rem;
+    left: -8%;
+    width: max-content;
+    margin: 0;
+    transform: rotate(-90deg);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
