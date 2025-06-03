@@ -7,8 +7,7 @@ const Error404 = () => {
     <div className="error-container">
       <h1 className="error-title">404</h1>
       <h2 className="error-message">
-        Oups! La page que
-        <br className="brError" /> vous demandez n'existe pas.
+        Oups! La page que vous demandez n'existe pas.
       </h2>
       <p>
         <Link to="/">Retourner sur la page d’accueil</Link>
