@@ -19,14 +19,14 @@ const Score = ({ data }) => {
         innerRadius="0%"
         outerRadius="0%"
         data={chartData}
-        startAngle={90}
-        endAngle={450}
+        startAngle={180}
+        endAngle={-90}
       >
         <text x="5%" y="20%" fontSize="1.5rem" fontWeight={500}>
           Score
         </text>
         <RadialBar
-          data={[{ value: 1 }]}
+          data={[{ value: 100 }]}
           dataKey="value"
           barSize={150}
           fill="#ffffff"

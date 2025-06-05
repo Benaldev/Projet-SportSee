@@ -27,7 +27,7 @@ export default function AverageTraining({ data }) {
         Durée moyenne des <br />
         sessions
       </h3>
-      <ResponsiveContainer width="90%" height="70%" className={"center"}>
+      <ResponsiveContainer width="100%" height="70%" className={"center"}>
         <LineChart data={data}>
           <Line
             type="natural"
