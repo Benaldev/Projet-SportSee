@@ -13,3 +13,16 @@ export const getUserByMockId = (id) => {
 export const getActivityStats = (id) => {
   return USER_ACTIVITY.find((user) => user.userId === id);
 };
+
+export const getUserAverageTraining = (id) => {
+  return USER_AVERAGE_SESSIONS.find((user) => user.userId === id);
+};
+
+export const getPerformanceStats = (id) => {
+  return USER_PERFORMANCE.find((user) => user.userId === id);
+};
+
+export const getScoreStats = (id) => {
+  const user = USER_MAIN_DATA.find((user) => user.id === id);
+  return user ? user.todayScore || user.score : null;
+};

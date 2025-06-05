@@ -9,10 +9,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import "./styles.scss";
+
 function Activity({ data }) {
   return (
     <>
-      <h3 className="chartactivity-title">Activité quotidienne</h3>
+      <h3 className="activity-title">Activité quotidienne</h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} barSize={7} barGap={8}>
           <CartesianGrid strokeDasharray="3" vertical={false} />

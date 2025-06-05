@@ -1,11 +1,31 @@
 .homeContainer {
   padding: 50px 70px;
 
-  .activity-chart {
-    height: 300px;
-    margin-top: 30px;
+  .activity-container {
+    height: 320px;
     background-color: #fbfbfb;
     border-radius: 5px;
     padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .small-charts-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    height: auto;
+    min-height: 263px;
+
+    .chart-wrapper {
+      background: red;
+      border-radius: 5px;
+      padding: 20px;
+      position: relative;
+      min-height: 250px; // ◄ ESSENTIEL pour le conteneur grid
+      min-width: 20px; // ◄ ESSENTIEL pour le conteneur grid
+      height: 250px !important;
+      // Debug visuel
+      border: 1px dashed red; // À retirer après vérification
+    }
   }
 }
