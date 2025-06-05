@@ -24,5 +24,8 @@ export const getPerformanceStats = (id) => {
 
 export const getScoreStats = (id) => {
   const user = USER_MAIN_DATA.find((user) => user.id === id);
-  return user ? user.todayScore || user.score : null;
+  if (!user) return null;
+  if (user.todayScore) return { todayScore: user.todayScore };
+  if (user.score) return { score: user.score };
+  return null;
 };
