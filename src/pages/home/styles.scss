@@ -7,25 +7,26 @@
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 30px;
+    margin-bottom: 100px;
   }
 
   .small-charts-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    height: auto;
-    min-height: 263px;
+
+    .chart-training {
+      background: red;
+    }
+
+    .chart-score {
+      background-color: #fbfbfb;
+    }
 
     .chart-wrapper {
-      background: red;
       border-radius: 5px;
-      padding: 20px;
-      position: relative;
-      min-height: 250px; // ◄ ESSENTIEL pour le conteneur grid
-      min-width: 20px; // ◄ ESSENTIEL pour le conteneur grid
-      height: 250px !important;
-      // Debug visuel
-      border: 1px dashed red; // À retirer après vérification
+      width: 258px;
+      height: 263px;
     }
   }
 }

@@ -22,7 +22,7 @@ const Score = ({ data }) => {
         startAngle={90}
         endAngle={450}
       >
-        <text x="0%" y="5%" fontSize="1.5rem" fontWeight={500}>
+        <text x="5%" y="20%" fontSize="1.5rem" fontWeight={500}>
           Score
         </text>
         <RadialBar

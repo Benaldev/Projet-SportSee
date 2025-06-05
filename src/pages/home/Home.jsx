@@ -37,13 +37,13 @@ export default function Home() {
       </div>
 
       <div className="small-charts-container">
-        <div className="chart-wrapper">
+        <div className="chart-wrapper chart-training">
           <AverageTraining data={userAverageTraining.sessions} />
         </div>
         <div className="chart-wrapper">
           <Intensity data={performanceData} />
         </div>
-        <div className="chart-wrapper">
+        <div className="chart-wrapper chart-score">
           <Score data={userScore} />
         </div>
       </div>
