@@ -14,7 +14,7 @@ const Intensity = ({ data }) => {
       <RadarChart
         outerRadius={55}
         data={data}
-        style={{ background: "#282d30", borderRadius: "10px" }}
+        style={{ background: "#282d30", borderRadius: "5px" }}
       >
         <PolarGrid radialLines={false} />
         <PolarAngleAxis
