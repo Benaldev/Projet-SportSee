@@ -12,6 +12,18 @@ import {
 import "./styles.scss";
 
 function Activity({ data }) {
+  function CustomToolTip({ active, payload }) {
+    if (active && payload && payload.length) {
+      return (
+        <div className="tooltip">
+          <p>{payload[0].value + "kg"}</p>
+          <p>{payload[1].value + "Kcal"}</p>
+        </div>
+      );
+    }
+    return null;
+  }
+
   return (
     <>
       <h3 className="activity-title">Activité quotidienne</h3>
@@ -38,7 +50,10 @@ function Activity({ data }) {
             tickCount={3}
           />
           <YAxis hide yAxisId="calories" />
-          <Tooltip cursor={{ fill: "rgba(196, 196, 196, 0.5)" }} />
+          <Tooltip
+            content={<CustomToolTip />}
+            cursor={{ fill: "rgba(196, 196, 196, 0.5)" }}
+          />
           <Bar
             name="Poids (kg)"
             dataKey="kilogram"

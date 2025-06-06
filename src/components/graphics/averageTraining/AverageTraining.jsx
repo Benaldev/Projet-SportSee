@@ -21,6 +21,17 @@ export default function AverageTraining({ data }) {
     return day;
   };
 
+  function CustomToolTip({ active, payload }) {
+    if (active && payload && payload.length) {
+      return (
+        <div className="average-training-tooltip">
+          <p>{payload[0].value + " min"}</p>
+        </div>
+      );
+    }
+    return null;
+  }
+
   return (
     <>
       <h3 className="average-training-title">
@@ -52,7 +63,7 @@ export default function AverageTraining({ data }) {
             tickFormatter={formatLabel}
             tickMargin={20}
           />
-          <Tooltip cursor={false} />
+          <Tooltip content={<CustomToolTip />} cursor={false} />
           <YAxis hide domain={["dataMin-10", "dataMax+10"]} />
           <defs>
             <linearGradient id="colorUv" x1="0%" y1="0" x2="100%" y2="0">
