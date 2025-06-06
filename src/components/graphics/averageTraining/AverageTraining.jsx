@@ -38,7 +38,7 @@ export default function AverageTraining({ data }) {
         Durée moyenne des <br />
         sessions
       </h3>
-      <ResponsiveContainer width="100%" height="70%" className={"center"}>
+      <ResponsiveContainer width="100%" height="55%" className={"center"}>
         <LineChart data={data}>
           <Line
             type="natural"
@@ -62,6 +62,8 @@ export default function AverageTraining({ data }) {
             }}
             tickFormatter={formatLabel}
             tickMargin={20}
+            interval={0}
+            padding={{ left: 5, right: 5 }}
           />
           <Tooltip content={<CustomToolTip />} cursor={false} />
           <YAxis hide domain={["dataMin-10", "dataMax+10"]} />

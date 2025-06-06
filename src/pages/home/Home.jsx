@@ -12,6 +12,8 @@ import AverageTraining from "../../components/graphics/averageTraining/AverageTr
 import Intensity from "../../components/graphics/intensity/Intensity";
 import Score from "../../components/graphics/score/score";
 
+import NutritionCards from "../../components/cards/NutritionCards";
+
 export default function Home() {
   const user = getUserByMockId(12);
 
@@ -32,19 +34,27 @@ export default function Home() {
       <h1>Bonjour {user.userInfos.firstName}</h1>
       <h2>Félicitations ! Vous avez explosé vos objectifs hier 👏</h2>
 
-      <div className="activity-container">
-        <Activity data={userActivity.sessions} />
-      </div>
+      <div className="main-content">
+        <div className="graphs-section">
+          <div className="activity-container">
+            <Activity data={userActivity.sessions} />
+          </div>
 
-      <div className="small-charts-container">
-        <div className="chart-wrapper chart-training">
-          <AverageTraining data={userAverageTraining.sessions} />
+          <div className="small-charts-container">
+            <div className="chart-wrapper chart-training">
+              <AverageTraining data={userAverageTraining.sessions} />
+            </div>
+            <div className="chart-wrapper">
+              <Intensity data={performanceData} />
+            </div>
+            <div className="chart-wrapper chart-score">
+              <Score data={userScore} />
+            </div>
+          </div>
         </div>
-        <div className="chart-wrapper">
-          <Intensity data={performanceData} />
-        </div>
-        <div className="chart-wrapper chart-score">
-          <Score data={userScore} />
+
+        <div className="nutrition-section">
+          <NutritionCards userId={12} />
         </div>
       </div>
     </div>

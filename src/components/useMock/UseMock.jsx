@@ -29,3 +29,18 @@ export const getScoreStats = (id) => {
   if (user.score) return { score: user.score };
   return null;
 };
+
+export const getNutritionStats = (id) => {
+  const user = USER_MAIN_DATA.find((user) => user.id === id);
+  if (!user) return null;
+
+  const { calorieCount, proteinCount, carbohydrateCount, lipidCount } =
+    user.keyData;
+
+  return {
+    calorieCount,
+    proteinCount,
+    carbohydrateCount,
+    lipidCount,
+  };
+};

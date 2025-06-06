@@ -1,19 +1,32 @@
 .homeContainer {
-  padding: 50px 70px;
+  padding: 25px 35px;
+
+  .main-content {
+    display: flex;
+    gap: 20px;
+
+    .graphs-section {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .nutrition-section {
+      width: 200px;
+      flex-shrink: 0;
+    }
+  }
 
   .activity-container {
-    height: 320px;
+    height: 250px;
     background-color: #fbfbfb;
     border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 15px;
     margin-bottom: 100px;
   }
 
   .small-charts-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
 
     .chart-training {
       background: red;
@@ -25,8 +38,8 @@
 
     .chart-wrapper {
       border-radius: 5px;
-      width: 258px;
-      height: 263px;
+      width: 200px;
+      height: 200px;
     }
   }
 }

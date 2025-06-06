@@ -12,7 +12,7 @@ const Intensity = ({ data }) => {
   return (
     <ResponsiveContainer>
       <RadarChart
-        outerRadius={70}
+        outerRadius={55}
         data={data}
         style={{ background: "#282d30", borderRadius: "10px" }}
       >
@@ -24,7 +24,7 @@ const Intensity = ({ data }) => {
           tick={{
             dy: 4,
             fill: "#fff",
-            fontSize: 12,
+            fontSize: 9,
           }}
         />
         <Radar dataKey="value" fill="red" fillOpacity={0.6} />
