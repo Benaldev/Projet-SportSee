@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import {
   getUserByMockId,
@@ -11,23 +11,56 @@ import Activity from "../../components/graphics/activity/Activity";
 import AverageTraining from "../../components/graphics/averageTraining/AverageTraining";
 import Intensity from "../../components/graphics/intensity/Intensity";
 import Score from "../../components/graphics/score/score";
-
 import NutritionCards from "../../components/cards/NutritionCards";
 
 export default function Home() {
-  const user = getUserByMockId(12);
+  const [user, setUser] = useState(null);
+  const [userActivity, setUserActivity] = useState(null);
+  const [userAverageTraining, setUserAverageTraining] = useState(null);
+  const [userPerformance, setUserPerformance] = useState(null);
+  const [userScore, setUserScore] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const userId = 12;
 
-  const userActivity = getActivityStats(12);
+  useEffect(() => {
+    Promise.all([
+      fetch(`http://localhost:3000/user/${userId}`).then((res) => res.json()),
+      fetch(`http://localhost:3000/user/${userId}/activity`).then((res) =>
+        res.json()
+      ),
+      fetch(`http://localhost:3000/user/${userId}/average-sessions`).then(
+        (res) => res.json()
+      ),
+      fetch(`http://localhost:3000/user/${userId}/performance`).then((res) =>
+        res.json()
+      ),
+    ])
+      .then(([userRes, activityRes, averageRes, performanceRes]) => {
+        setUser(userRes.data);
+        setUserActivity(activityRes.data);
+        setUserAverageTraining(averageRes.data);
+        setUserPerformance(performanceRes.data);
+        setUserScore(userRes.data.todayScore ?? userRes.data.score ?? null);
+        setLoading(false);
+      })
+      .catch(() => {
+        setUser(getUserByMockId(userId));
+        setUserActivity(getActivityStats(userId));
+        setUserAverageTraining(getUserAverageTraining(userId));
+        const perf = getPerformanceStats(userId);
+        setUserPerformance(perf);
+        setUserScore(user.score ?? user.todayScore ?? null);
+        setLoading(false);
+      });
+  }, [userId]);
 
-  const userAverageTraining = getUserAverageTraining(12);
+  if (loading) return <p>Chargement des données...</p>;
+  if (!user) return <p>Utilisateur non trouvé</p>;
 
-  const userPerformance = getPerformanceStats(12);
   const performanceData = userPerformance.data.map((item) => ({
     ...item,
     kind: userPerformance.kind[item.kind],
   }));
-
-  const userScore = getScoreStats(12);
 
   return (
     <div className="homeContainer">
@@ -54,7 +87,7 @@ export default function Home() {
         </div>
 
         <div className="nutrition-section">
-          <NutritionCards userId={12} />
+          <NutritionCards userId={userId} />
         </div>
       </div>
     </div>
