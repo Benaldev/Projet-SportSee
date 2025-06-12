@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import {
-  getUserByMockId,
-  getActivityStats,
-  getUserAverageTraining,
-  getPerformanceStats,
-  getScoreStats,
-} from "../../components/useMock/UseMock";
 import Activity from "../../components/graphics/activity/Activity";
 import AverageTraining from "../../components/graphics/averageTraining/AverageTraining";
 import Intensity from "../../components/graphics/intensity/Intensity";
 import Score from "../../components/graphics/score/score";
 import NutritionCards from "../../components/cards/NutritionCards";
+import {
+  getActivityStats,
+  getPerformanceStats,
+  getScoreStats,
+  getUserAverageTraining,
+  getUserById,
+} from "../../services/api";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -23,35 +23,14 @@ export default function Home() {
   const userId = 12;
 
   useEffect(() => {
-    Promise.all([
-      fetch(`http://localhost:3000/user/${userId}`).then((res) => res.json()),
-      fetch(`http://localhost:3000/user/${userId}/activity`).then((res) =>
-        res.json()
-      ),
-      fetch(`http://localhost:3000/user/${userId}/average-sessions`).then(
-        (res) => res.json()
-      ),
-      fetch(`http://localhost:3000/user/${userId}/performance`).then((res) =>
-        res.json()
-      ),
-    ])
-      .then(([userRes, activityRes, averageRes, performanceRes]) => {
-        setUser(userRes.data);
-        setUserActivity(activityRes.data);
-        setUserAverageTraining(averageRes.data);
-        setUserPerformance(performanceRes.data);
-        setUserScore(userRes.data.todayScore ?? userRes.data.score ?? null);
-        setLoading(false);
-      })
-      .catch(() => {
-        setUser(getUserByMockId(userId));
-        setUserActivity(getActivityStats(userId));
-        setUserAverageTraining(getUserAverageTraining(userId));
-        const perf = getPerformanceStats(userId);
-        setUserPerformance(perf);
-        setUserScore(user.score ?? user.todayScore ?? null);
-        setLoading(false);
-      });
+    (async () => {
+      setUser(await getUserById(userId));
+      setUserActivity(await getActivityStats(userId));
+      setUserAverageTraining(await getUserAverageTraining(userId));
+      setUserPerformance(await getPerformanceStats(userId));
+      setUserScore(await getScoreStats(userId));
+      setLoading(false);
+    })();
   }, [userId]);
 
   if (loading) return <p>Chargement des données...</p>;

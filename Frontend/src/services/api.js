@@ -10,7 +10,7 @@ async function fetchWithFallback(url, fallbackData) {
     const response = await fetch(url);
     if (!response.ok) throw new Error("API fetch failed");
     const data = await response.json();
-    return data;
+    return data.data;
   } catch (error) {
     console.warn(`Fetch failed for ${url}, using fallback data.`);
     return fallbackData;
@@ -44,18 +44,20 @@ export async function getPerformanceStats(id) {
 export async function getScoreStats(id) {
   const url = `http://localhost:3000/user/${id}`;
   const fallbackUser = USER_MAIN_DATA.find((user) => user.id === id);
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("API fetch failed");
-    const data = await response.json();
-
-    if (data.todayScore) return { todayScore: data.todayScore };
-    if (data.score) return { score: data.score };
-    return null;
-  } catch {
-    if (!fallbackUser) return null;
-    if (fallbackUser.todayScore) return { todayScore: fallbackUser.todayScore };
-    if (fallbackUser.score) return { score: fallbackUser.score };
-    return null;
-  }
+  return fetchWithFallback(url, fallbackUser);
 }
+
+export const getNutritionStats = async (id) => {
+  const user = await getUserById(id);
+  if (!user) return null;
+
+  const { calorieCount, proteinCount, carbohydrateCount, lipidCount } =
+    user.keyData;
+
+  return {
+    calorieCount,
+    proteinCount,
+    carbohydrateCount,
+    lipidCount,
+  };
+};

@@ -1,5 +1,4 @@
-import React from "react";
-import { getNutritionStats } from "../useMock/UseMock";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import "./styles.scss";
 
@@ -7,9 +6,15 @@ import caloriesIcon from "../../assets/images/calories-icon.png";
 import proteinIcon from "../../assets/images/protein-icon.png";
 import carbsIcon from "../../assets/images/carbs-icon.png";
 import fatIcon from "../../assets/images/fat-icon.png";
+import { getNutritionStats } from "../../services/api";
 
 const NutritionCards = ({ userId }) => {
-  const stats = getNutritionStats(userId);
+  const [stats, setStats] = useState(null);
+  useEffect(() => {
+    (async () => {
+      setStats(await getNutritionStats(userId));
+    })();
+  }, [userId]);
 
   if (!stats) return <p>Données nutritionnelles indisponibles</p>;
 
