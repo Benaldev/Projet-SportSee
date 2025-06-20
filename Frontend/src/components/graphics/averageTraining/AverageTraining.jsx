@@ -1,3 +1,4 @@
+import { formatLabel } from "../../../services/formatter";
 import {
   LineChart,
   Line,
@@ -10,17 +11,6 @@ import {
 import "./styles.scss";
 
 export default function AverageTraining({ data }) {
-  const formatLabel = (day) => {
-    if (day === 1) return "L";
-    if (day === 2) return "M";
-    if (day === 3) return "M";
-    if (day === 4) return "J";
-    if (day === 5) return "V";
-    if (day === 6) return "S";
-    if (day === 7) return "D";
-    return day;
-  };
-
   function CustomToolTip({ active, payload }) {
     if (active && payload && payload.length) {
       return (

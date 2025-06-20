@@ -3,7 +3,7 @@ import { RadialBar, RadialBarChart, ResponsiveContainer } from "recharts";
 import "./styles.scss";
 
 const Score = ({ data }) => {
-  const score = data.todayScore || data.score;
+  const score = data.score;
 
   const chartData = [
     {
@@ -22,7 +22,7 @@ const Score = ({ data }) => {
         startAngle={180}
         endAngle={-90}
       >
-        <text x="8%" y="15%" fontSize="1.2rem" fontWeight={500}>
+        <text x="8%" y="8%" fontSize="1.2rem" fontWeight={500}>
           Score
         </text>
         <RadialBar
